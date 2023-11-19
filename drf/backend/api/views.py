@@ -35,9 +35,13 @@ from blog.models import Article
 class ArticleViewSet(ModelViewSet):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
-    # Object Filtering
+    # Object Filtering Field
     filterset_fields = ['status', 'author__username']
-    search_fields = ["title", "author", "content"]
+    # Search field
+    search_fields = ['title', 'author', 'content']
+    # Ordering field
+    ordering_fields = ['publish', 'status']
+    ordering = ['-publish']
 
     def get_permissions(self):
         """
